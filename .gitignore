@@ -1,0 +1,34 @@
+# Node modules
+Backend/node_modules/
+Frontend/node_modules/
+
+# Environment files
+.env
+*.env
+
+# Excel output
+Backend/feedback.xlsx
+
+# Build / Dist
+Frontend/dist/
+Frontend/build/
+Backend/dist/
+Backend/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# Cache
+.cache/
+.temp/
