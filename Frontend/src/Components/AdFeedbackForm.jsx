@@ -36,7 +36,7 @@ export default function AdFeedbackForm() {
     if (!validate()) return;
 
     try {
-      const res = await axios.post("http://localhost:4000/api/feedback", form);
+      const res = await axios.post("https://adfeedbackform.onrender.com/api/feedback", form);
 
       if (res.data.success) {
         toast.success("Feedback submitted successfully!");
@@ -52,7 +52,7 @@ export default function AdFeedbackForm() {
       }
     } catch (error) {
       console.log(error);
-      oast.error("Server Error!");
+      toast.error("Server Error!");
     }
   };
 

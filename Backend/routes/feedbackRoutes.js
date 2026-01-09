@@ -52,7 +52,7 @@ console.log("Sheet row count:", sheet.rowCount);
 
 
     // 6. Save file (always overwritten to stay in sync)
-    await workbook.xlsx.writeFile("feedback.xlsx");
+    await workbook.xlsx.writeFile("/temp/feedback.xlsx");
 
     console.log("Excel regenerated with all DB records!");
     res.json({ success: true });
@@ -62,5 +62,11 @@ console.log("Sheet row count:", sheet.rowCount);
     res.json({ success: false });
   }
 });
+
+router.get("/download", async (req, res) => {
+  res.download("/tmp/feedback.xlsx");
+});
+
+
 
 export default router;
