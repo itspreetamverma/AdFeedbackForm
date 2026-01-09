@@ -12,6 +12,7 @@ export default function AdFeedbackForm() {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // NEW
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,8 +36,12 @@ export default function AdFeedbackForm() {
     e.preventDefault();
     if (!validate()) return;
 
+    setLoading(true); // start loading
+
     try {
       const res = await axios.post("https://adfeedbackform.onrender.com/api/feedback", form);
+
+      setLoading(false); // stop loading
 
       if (res.data.success) {
         toast.success("Feedback submitted successfully!");
@@ -52,6 +57,7 @@ export default function AdFeedbackForm() {
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast.error("Server Error!");
     }
   };
@@ -131,12 +137,20 @@ export default function AdFeedbackForm() {
           {errors.rating && <p className="text-red-500 text-xs">{errors.rating}</p>}
         </div>
 
-        {/* Submit */}
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg"
+          disabled={loading}
+          className={`w-full text-white font-semibold py-2 rounded-lg ${loading ? "bg-blue-400" : "bg-blue-600"}`}
         >
-          Submit Feedback
+          {loading ? (
+            <div className="flex justify-center items-center gap-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Submitting...
+            </div>
+          ) : (
+            "Submit Feedback"
+          )}
         </button>
       </form>
     </div>
