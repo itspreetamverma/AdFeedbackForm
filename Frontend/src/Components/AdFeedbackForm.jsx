@@ -36,8 +36,7 @@ export default function AdFeedbackForm() {
     if (!validate()) return;
 
     try {
-      const res = await axios.post("https://adfeedbackform-1.onrender.com/api/feedback", form);
-
+      const res = await axios.post("http://localhost:4000/api/feedback", form);
 
       if (res.data.success) {
         toast.success("Feedback submitted successfully!");
